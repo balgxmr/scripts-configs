@@ -41,9 +41,15 @@ then
 
 elif [ $seleccion = '2' ] # Build kernel
 then
-    echo "Building kernel..."
-    cd kernel/xiaomi/${device_codename}
-    /bin/dash build.sh
+    if [ -f ~/$rom_name/build.sh ]
+    then
+        echo "Building kernel..."
+        cd kernel/xiaomi/${device_codename}
+        /bin/dash build.sh
+    else
+        echo "Kernel build script not found, aborting..."
+        exit 1
+    fi
 
 elif [ $seleccion = '3' ] # Sync ROM 
 then
