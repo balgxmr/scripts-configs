@@ -2,14 +2,12 @@
   "PresetList": [
     {
       "AlignAVStart": true,
-      "AudioCopyMask": [
-        "copy:aac"
-      ],
+      "AudioCopyMask": ["copy:aac"],
       "AudioEncoderFallback": "av_aac",
       "AudioLanguageList": [],
       "AudioList": [
         {
-          "AudioBitrate": 160,
+          "AudioBitrate": 320,
           "AudioCompressionLevel": 0,
           "AudioEncoder": "av_aac",
           "AudioMixdown": "stereo",
