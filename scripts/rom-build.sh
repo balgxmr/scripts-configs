@@ -2,23 +2,21 @@
 #
 # balgxmr's build script
 # 
-# rem: Current path is ~/Documents/SW
+# Rom path is set to ~/
 
 rom_name='pixelos'
 
-cd ../.. || exit 1 ## This is only due to current path
-mkdir $rom_name ## This is only due to current path
-cd $rom_name || exit 1 ## This is only due to current path
+cd ~/$rom_name || exit 1
 
 echo "===================== Build setup ====================="
 echo "1) Build ROM"
 echo "2) Build kernel"
 echo "3) Sync ROM"
 echo "======================================================="
-echo ""
+echo
 echo "Selección: " 
 read seleccion
-echo ""
+echo
 
 android_version='thirteen'
 device_codename='cepheus'
@@ -27,7 +25,7 @@ case $seleccion in
     1|2|3) 
 esac
 
-if [ $seleccion = '1' ];
+if [ $seleccion = '1' ] # Build ROM 
 then
     echo "Building rom..."
     source build/envsetup.sh
@@ -37,13 +35,13 @@ then
     make installclean
     mka bacon
 
-elif [ $seleccion = '2' ]
+elif [ $seleccion = '2' ] # Build kernel
 then
     echo "Building kernel..."
     cd kernel/xiaomi/${device_codename}
     source build.sh
 
-elif [ $seleccion = '3' ]
+elif [ $seleccion = '3' ] # Sync ROM 
 then
     echo "Are you sure you wanna sync the rom...? "
     echo "(y/n):"
@@ -58,6 +56,7 @@ then
         read selection2
         if [ $selection2 = 'f' ]
         then
+            echo "Force sync selected!"
             echo "Cleaning some repos first..."
             rm -rf hardware/qcom-caf/sm8150
             rm -rf packages/resources/devicesettings
@@ -67,17 +66,17 @@ then
 
         elif [ $selection2 = 'c' ]
         then
+            echo "Clean sync selected!"
             echo "Deleting $rom_name directory"
-            cd .. && rm -rf $rom_name
-            mkdir $rom_name
-            cd $rom_name
+            rm -rf ~/$rom_name && mkdir ~/$rom_name
+            cd ~/$rom_name
 
             echo "Syncing ROM"
             repo init -u https://github.com/PixelOS-AOSP/manifest.git -b $android_version
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
         else 
-            echo "ah? Invalid input, aborting!"
+            echo "Ah? Invalid input, aborting!"
         fi
 
     elif [ $seguridad = 'n' ]
