@@ -4,9 +4,11 @@
 # 
 # rem: Current path is ~/Documents/SW
 
+rom_name='pixelos'
+
 cd ../.. || exit 1 ## This is only due to current path
-mkdir pixelos ## This is only due to current path
-cd pixelos/ || exit 1 ## This is only due to current path
+mkdir $rom_name ## This is only due to current path
+cd $rom_name || exit 1 ## This is only due to current path
 
 echo "===================== Build setup ====================="
 echo "1) Build ROM"
@@ -48,24 +50,29 @@ then
     read seguridad
     if [ $seguridad = 'y' ]
     then
-        echo "Cleaning some repos first... "
         echo
-        rm -rf hardware/qcom-caf/sm8150
-        rm -rf packages/resources/devicesettings
-        rm -rf hardware/xiaomi
 
         echo "Force sync only or clean?"
-        echo "'f' for force sync, 'c' for clean: "
+        echo "'f' for force sync, 'c' for clean"
+        echo "(f/c): "
         read selection2
         if [ $selection2 = 'f' ]
         then
+            echo "Cleaning some repos first..."
+            rm -rf hardware/qcom-caf/sm8150
+            rm -rf packages/resources/devicesettings
+            rm -rf hardware/xiaomi
             echo "Force syncing ROM..."
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
         elif [ $selection2 = 'c' ]
         then
-            echo "Syncing clean"
-            rm -rf .repo
+            echo "Deleting $rom_name directory"
+            cd .. && rm -rf $rom_name
+            mkdir $rom_name
+            cd $rom_name
+
+            echo "Syncing ROM"
             repo init -u https://github.com/PixelOS-AOSP/manifest.git -b $android_version
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
