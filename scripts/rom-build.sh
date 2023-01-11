@@ -2,7 +2,11 @@
 #
 # balgxmr's build script
 # 
+# Copyright (C) 2022 balgxmr ( José M. ) 
+# 
 # Rom path is set to ~/
+
+clear && printf '\e[3J'
 
 rom_name='pixelos'
 
@@ -28,7 +32,7 @@ esac
 if [ $seleccion = '1' ] # Build ROM 
 then
     echo "Building rom..."
-    source build/envsetup.sh
+    /bin/dash build/envsetup.sh
     export CCACHE_DIR=~/ccache
     mkdir -p ~/ccache 
     lunch aosp_${device_codename}-user
@@ -39,7 +43,7 @@ elif [ $seleccion = '2' ] # Build kernel
 then
     echo "Building kernel..."
     cd kernel/xiaomi/${device_codename}
-    source build.sh
+    /bin/dash build.sh
 
 elif [ $seleccion = '3' ] # Sync ROM 
 then
@@ -81,11 +85,11 @@ then
 
     elif [ $seguridad = 'n' ]
     then
-        echo "Más te vale seleccionar bien el número, bal!"
+        echo "So you don't want to sync the rom, aborting!"
 
     else 
-        echo "Invalid input, abort abort!!!"
+        echo "Invalid input, aborting!"
     fi
 else 
-    echo "Invalid input"
+    echo "Invalid input, aborting!"
 fi

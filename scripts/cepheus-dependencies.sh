@@ -1,11 +1,34 @@
 #! /bin/sh
 #
 # balgxmr's cepheus dependencies script
-# 
-# rem: Current path is ~/Documents/SW
+#
+# Copyright (C) 2022 balgxmr ( José M. ) 
+#
+# ROM path is set to ~/
 
-cd ../.. || exit 1
-cd pixelos/ || exit 1
+rom_name='pixelos'
+buildScript='rom-build.sh'
+if [ -d ~/$rom_name ]
+then
+    echo "Directory $rom_name found!"
+    cd ~/$rom_name || exit 1
+else
+    echo "ROM directory $rom_name not found!\nDo you want to create a new one?"
+    echo "(y/n)"
+    read x
+    if [ $x = 'y' ]
+    then
+        echo "Creating directory for ROM..."
+        mkdir ~/$rom_name && cd ~/$rom_name
+    elif [ $x = 'n' ]
+    then
+        echo "Aborting..."
+        exit 1
+    else
+        echo "Invalid input, aborting..."
+        exit 1
+    fi
+fi
 
 echo "===================== Cleaning Up ====================="
 rm -rf device/xiaomi/cepheus
@@ -48,3 +71,24 @@ echo "Cloning Miui Camera"
 git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
 
 echo "============ Finished ============"
+echo
+
+echo "Wanna execute rom build script? It must be in ~/$rom_name path."
+echo "(y/n)"
+read selection
+
+if [ $selection = 'y' ]
+then
+    if [ -f ~/$rom_name/$buildScript ]
+    then
+        cd ~/$rom_name
+        /bin/dash $buildScript
+    else
+        echo "Build script not found, aborting..."
+    fi
+elif [ $selection = 'n' ]
+then 
+    echo "Selection was NO. Aborting."
+else
+    echo "Invalid input, aborting."
+fi
