@@ -8,9 +8,9 @@
 
 clear && printf '\e[3J'
 
-rom_name='pixelos'
+ROM_NAME='pixelos'
 
-cd ~/$rom_name || exit 1
+cd ~/$ROM_NAME || exit 1
 
 echo "===================== Build setup ====================="
 echo "1) Build ROM"
@@ -41,7 +41,7 @@ then
 
 elif [ $seleccion = '2' ] # Build kernel
 then
-    if [ -f ~/$rom_name/build.sh ]
+    if [ -f ~/$ROM_NAME/build.sh ]
     then
         echo "Building kernel..."
         cd kernel/xiaomi/${device_codename}
@@ -77,9 +77,9 @@ then
         elif [ $selection2 = 'c' ]
         then
             echo "Clean sync selected!"
-            echo "Deleting $rom_name directory"
-            rm -rf ~/$rom_name && mkdir ~/$rom_name
-            cd ~/$rom_name
+            echo "Deleting $ROM_NAME directory"
+            rm -rf ~/$ROM_NAME && mkdir ~/$ROM_NAME
+            cd ~/$ROM_NAME
 
             echo "Syncing ROM"
             repo init -u https://github.com/PixelOS-AOSP/manifest.git -b $android_version

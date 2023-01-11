@@ -6,19 +6,20 @@
 #
 # ROM path is set to ~/
 
-rom_name='pixelos'
-buildScript='rom-build.sh'
-if [ -d ~/$rom_name ]
+ROM_NAME='pixelos'
+BUILD_SCRIPT='rom-build.sh'
+
+if [ -d ~/$ROM_NAME ]
 then
-    echo "Directory $rom_name found!"
-    cd ~/$rom_name || exit 1
+    echo "Directory $ROM_NAME found!"
+    cd ~/$ROM_NAME || exit 1
 else
-    echo "ROM directory $rom_name not found!\nDo you want to create a new one?"
+    echo "ROM directory $ROM_NAME not found!\nDo you want to create a new one?"
     read -p "(y/n): " x
     if [ $x = 'y' ]
     then
         echo "Creating directory for ROM..."
-        mkdir ~/$rom_name && cd ~/$rom_name
+        mkdir ~/$ROM_NAME && cd ~/$ROM_NAME
     elif [ $x = 'n' ]
     then
         echo "Aborting..."
@@ -29,7 +30,7 @@ else
     fi
 fi
 
-cd ~/$rom_name || exit 1
+cd ~/$ROM_NAME || exit 1
 echo
 echo "What do you want to do?\n1) Clone all the dependencies. (This will remove all current dependencies for cepheus and clone newer ones)"
 echo "2) Clone specific dependency"
@@ -145,15 +146,15 @@ echo
 echo "============ Finished ============"
 echo
 
-echo "Wanna execute rom build script? It must be in ~/$rom_name path."
+echo "Wanna execute rom build script? It must be in ~/$ROM_NAME path."
 read -p "(y/n) " selection
 
 if [ $selection = 'y' ]
 then
-    if [ -f ~/$rom_name/$buildScript ]
+    if [ -f ~/$ROM_NAME/$BUILD_SCRIPT ]
     then
-        cd ~/$rom_name
-        /bin/dash $buildScript
+        cd ~/$ROM_NAME
+        /bin/dash $BUILD_SCRIPT
     else
         echo "Build script not found, aborting..."
     fi
