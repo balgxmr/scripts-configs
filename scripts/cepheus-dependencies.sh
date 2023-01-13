@@ -96,31 +96,31 @@ then
         ;;
 
         "2")
-        rm -rf device/xiaomi/cepheus
+        rm -rf kernel/xiaomi/cepheus
         echo ">> Cloning Kernel tree"
         git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b thirteen kernel/xiaomi/cepheus
         ;;
 
         "3")
-        rm -rf device/xiaomi/cepheus
+        rm -rf vendor/xiaomi/cepheus
         echo ">> Cloning Vendor tree"
         git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b thirteen vendor/xiaomi/cepheus
         ;;
         
         "4")
-        rm -rf device/xiaomi/cepheus
+        rm -rf hardware/xiaomi
         echo ">> Cloning Hw/xiaomi"
         git clone https://github.com/balgxmr/android_hardware_xiaomi -b lineage-20 hardware/xiaomi
         ;;
 
         "5")
-        rm -rf device/xiaomi/cepheus
+        rm -rf prebuilts/clang/host/linux-x86/clang-azure
         echo ">> Cloning Clang"
         git clone https://gitlab.com/Panchajanya1999/azure-clang -b main prebuilts/clang/host/linux-x86/clang-azure --depth=1
         ;;
 
         "6")
-        rm -rf device/xiaomi/cepheus
+        rm -rf hardware/qcom-caf/sm8150
         echo ">> Cloning Hals"
         git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_audio.git -b thirteen hardware/qcom-caf/sm8150/audio
         git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_media.git -b thirteen hardware/qcom-caf/sm8150/media
@@ -128,13 +128,13 @@ then
         ;;
 
         "7")
-        rm -rf device/xiaomi/cepheus
+        rm -rf packages/resources/devicesettings
         echo ">> Cloning Devicesettings"
         git clone https://github.com/xiaomi-cepheus/packages_resources_devicesettings -b twelve packages/resources/devicesettings
         ;;
 
         "8")
-        rm -rf device/xiaomi/cepheus
+        rm -rf vendor/xiaomi/cepheus-miuicamera
         echo ">> Cloning Miui Camera"
         git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
         ;;
