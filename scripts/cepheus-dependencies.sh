@@ -35,6 +35,8 @@ echo
 echo "What do you want to do?\n1) Clone all the dependencies. (This will remove all current dependencies for cepheus and clone newer ones)"
 echo "2) Clone specific dependency"
 read -p "Your selection: " y
+echo
+
 if [ $y = '1' ]
 then
     echo "===================== Cleaning Up ====================="
