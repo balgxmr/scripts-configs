@@ -63,7 +63,7 @@ then
     git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b thirteen vendor/xiaomi/cepheus
 
     echo ">> Cloning Hw/xiaomi"
-    git clone https://github.com/balgxmr/android_hardware_xiaomi -b lineage-20 hardware/xiaomi
+    git clone https://github.com/balgxmr/hardware_xiaomi -b lineage-20 hardware/xiaomi
 
     echo ">> Cloning Clang"
     git clone https://gitlab.com/Panchajanya1999/azure-clang -b main prebuilts/clang/host/linux-x86/clang-azure --depth=1
@@ -113,7 +113,7 @@ then
             "4")
             rm -rf hardware/xiaomi
             echo ">> Cloning Hw/xiaomi"
-            git clone https://github.com/balgxmr/android_hardware_xiaomi -b lineage-20 hardware/xiaomi
+            git clone https://github.com/balgxmr/hardware_xiaomi -b lineage-20 hardware/xiaomi
             ;;
 
             "5")
