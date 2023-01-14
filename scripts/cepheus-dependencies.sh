@@ -151,7 +151,8 @@ then
     then
         loop=0
     else
-    	echo "Invalid input... aborting"
+    	loop=0
+    	echo "Invalid input. Aborting and continuing."
     fi
     done
 else
