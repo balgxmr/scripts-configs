@@ -41,7 +41,7 @@ then
 
 elif [ $seleccion = '2' ] # Build kernel
 then
-    if [ -f ~/$ROM_NAME/build.sh ]
+    if [ -f ~/$ROM_NAME/kernel/xiaomi/${device_codename}/build.sh ]
     then
         echo "Building kernel..."
         cd kernel/xiaomi/${device_codename}
