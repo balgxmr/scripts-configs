@@ -44,12 +44,12 @@ then
     rm -rf kernel/xiaomi/cepheus
     rm -rf vendor/xiaomi/cepheus
     rm -rf hardware/xiaomi
-    # rm -rf prebuilts/clang/host/linux-x86/clang-azure
-    rm -rf hardware/qcom-caf/sm8150
+    rm -rf prebuilts/clang/host/linux-x86/clang-azure
     rm -rf packages/resources/devicesettings
     rm -rf vendor/xiaomi/cepheus-miuicamera
 
     echo "================  Cleaning Up finished ================"
+    echo
     echo "============ Starting cloning device repos ============"
 
     echo ">> Cloning Device tree"
@@ -68,13 +68,12 @@ then
     echo ">> Cloning Clang"
     git clone https://gitlab.com/Panchajanya1999/azure-clang -b main prebuilts/clang/host/linux-x86/clang-azure --depth=1
 
-    echo ">> Cloning Hals"
-    git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_audio.git -b thirteen hardware/qcom-caf/sm8150/audio
-    git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_media.git -b thirteen hardware/qcom-caf/sm8150/media
-    git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_display.git -b thirteen hardware/qcom-caf/sm8150/display
+    # echo ">> Cloning Hals"
+    # I'm now using these audio, media & display hals from LineageOS 
+    # git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_{audio, media, display} 
 
     echo ">> Cloning Devicesettings"
-    git clone https://github.com/xiaomi-cepheus/packages_resources_devicesettings -b twelve packages/resources/devicesettings
+    git clone https://github.com/LineageOS/android_packages_resources_devicesettings -b lineage-20.0 packages/resources/devicesettings
 
     echo ">> Cloning Miui Camera"
     git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
@@ -86,7 +85,7 @@ then
     do
         echo "Which dependency do you want to clone?"
         echo "1. Device tree\n2. Kernel tree\n3. Vendor tree\n4. Hardware/Xiaomi"
-        echo "5. Clang\n6. Hals\n7. Device Settings\n8. MIUI Camera vendor"
+        echo "5. Clang\n6. Device Settings\n7. MIUI Camera vendor"
         read -p "Your selection: " dependency
         echo
 
@@ -123,20 +122,12 @@ then
             ;;
 
             "6")
-            rm -rf hardware/qcom-caf/sm8150
-            echo ">> Cloning Hals"
-            git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_audio.git -b thirteen hardware/qcom-caf/sm8150/audio
-            git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_media.git -b thirteen hardware/qcom-caf/sm8150/media
-            git clone https://github.com/balgxmr/hardware_qcom-caf_sm8150_display.git -b thirteen hardware/qcom-caf/sm8150/display
+            rm -rf packages/resources/devicesettings
+            echo ">> Cloning Devicesettings"
+            git clone https://github.com/LineageOS/android_packages_resources_devicesettings -b lineage-20.0 packages/resources/devicesettings
             ;;
 
             "7")
-            rm -rf packages/resources/devicesettings
-            echo ">> Cloning Devicesettings"
-            git clone https://github.com/xiaomi-cepheus/packages_resources_devicesettings -b twelve packages/resources/devicesettings
-            ;;
-
-            "8")
             rm -rf vendor/xiaomi/cepheus-miuicamera
             echo ">> Cloning Miui Camera"
             git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
