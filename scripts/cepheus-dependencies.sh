@@ -66,7 +66,7 @@ then
     git clone https://github.com/balgxmr/hardware_xiaomi -b lineage-20 hardware/xiaomi
 
     echo ">> Cloning Clang"
-    git clone https://gitlab.com/Panchajanya1999/azure-clang -b main prebuilts/clang/host/linux-x86/clang-azure --depth=1
+    git clone https://gitlab.com/PixelOS-Devices/playgroundtc.git -b 17 prebuilts/clang/host/linux-x86/clang-playground
 
     # echo ">> Cloning Hals"
     # I'm now using these audio, media & display hals from LineageOS 
@@ -116,9 +116,9 @@ then
             ;;
 
             "5")
-            rm -rf prebuilts/clang/host/linux-x86/clang-azure
+            rm -rf prebuilts/clang/host/linux-x86/clang-playground
             echo ">> Cloning Clang"
-            git clone https://gitlab.com/Panchajanya1999/azure-clang -b main prebuilts/clang/host/linux-x86/clang-azure --depth=1
+            git clone https://gitlab.com/PixelOS-Devices/playgroundtc.git -b 17 prebuilts/clang/host/linux-x86/clang-playground
             ;;
 
             "6")
