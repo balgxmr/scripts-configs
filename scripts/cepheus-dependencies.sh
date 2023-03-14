@@ -46,7 +46,7 @@ then
     rm -rf hardware/xiaomi
     rm -rf prebuilts/clang/host/linux-x86/clang-azure
     rm -rf packages/resources/devicesettings
-    rm -rf vendor/xiaomi/cepheus-miuicamera
+    # rm -rf vendor/xiaomi/cepheus-miuicamera
 
     echo "================  Cleaning Up finished ================"
     echo
@@ -75,8 +75,8 @@ then
     echo ">> Cloning Devicesettings"
     git clone https://github.com/LineageOS/android_packages_resources_devicesettings -b lineage-20.0 packages/resources/devicesettings
 
-    echo ">> Cloning Miui Camera"
-    git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
+    # echo ">> Cloning Miui Camera"
+    # git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
 
 elif [ $y = '2' ]
 then
@@ -128,9 +128,16 @@ then
             ;;
 
             "7")
-            rm -rf vendor/xiaomi/cepheus-miuicamera
-            echo ">> Cloning Miui Camera"
-            git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
+            echo "MIUI camera isn't stable right now, do you still want to clone it?"
+            read -p "(y/n): " miuielection
+            if [ $miuielection = 'y' ]
+            then
+                rm -rf vendor/xiaomi/cepheus-miuicamera
+                echo ">> Cloning Miui Camera"
+                git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
+            else
+                echo Continuing...
+            fi
             ;;
         esac
     echo "Do you want to clone another dependency?"
