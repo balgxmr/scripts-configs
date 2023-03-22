@@ -18,8 +18,7 @@ echo "2) Build kernel"
 echo "3) Sync ROM"
 echo "======================================================="
 echo
-echo "Selección: " 
-read seleccion
+read -p "Selección: " seleccion
 echo
 
 android_version='thirteen'
@@ -32,7 +31,7 @@ esac
 if [ $seleccion = '1' ] # Build ROM 
 then
     echo "Building rom..."
-    /bin/dash build/envsetup.sh
+    . build/envsetup.sh
     export CCACHE_DIR=~/ccache
     mkdir -p ~/ccache 
     lunch aosp_${device_codename}-user
@@ -45,7 +44,7 @@ then
     then
         echo "Building kernel..."
         cd kernel/xiaomi/${device_codename}
-        /bin/dash build.sh
+        ./build.sh
     else
         echo "Kernel build script not found, aborting..."
         exit 1
@@ -67,10 +66,9 @@ then
         if [ $selection2 = 'f' ]
         then
             echo "Force sync selected!"
-            echo "Cleaning some repos first..."
-            rm -rf hardware/qcom-caf/sm8150
-            rm -rf packages/resources/devicesettings
-            rm -rf hardware/xiaomi
+            # echo "Cleaning some repos first - I don't see the point to clean these.
+            # rm -rf packages/resources/devicesettings
+            # rm -rf hardware/xiaomi
             echo "Force syncing ROM..."
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
@@ -86,12 +84,12 @@ then
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
         else 
-            echo "Ah? Invalid input, aborting!"
+            echo "Invalid input!"
         fi
 
     elif [ $seguridad = 'n' ]
     then
-        echo "So you don't want to sync the rom, aborting!"
+        echo "No selected. Aborting."
 
     else 
         echo "Invalid input, aborting!"
