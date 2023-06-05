@@ -44,29 +44,35 @@ then
     rm -rf kernel/xiaomi/cepheus
     rm -rf vendor/xiaomi/cepheus
     rm -rf hardware/xiaomi
-    rm -rf prebuilts/clang/host/linux-x86/clang-azure
+    # rm -rf prebuilts/clang/host/linux-x86/clang-azure
     rm -rf packages/resources/devicesettings
     # rm -rf vendor/xiaomi/cepheus-miuicamera
 
     echo "================  Cleaning Up finished ================"
     echo
     echo "============ Starting cloning device repos ============"
+    echo
 
     echo ">> Cloning Device tree"
     # git clone https://github.com/balgxmr/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
     git clone https://github.com/PixelOS-Devices/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
+    echo
 
     echo ">> Cloning Kernel tree"
     git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b thirteen kernel/xiaomi/cepheus
+    echo
 
     echo ">> Cloning Vendor tree"
     git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b thirteen vendor/xiaomi/cepheus
+    echo
 
     echo ">> Cloning Hw/xiaomi"
     git clone https://github.com/balgxmr/hardware_xiaomi -b lineage-20 hardware/xiaomi
+    echo
 
     echo ">> Cloning Clang"
     git clone https://gitlab.com/PixelOS-Devices/playgroundtc.git -b 17 prebuilts/clang/host/linux-x86/clang-playground
+    echo
 
     # echo ">> Cloning Hals"
     # I'm now using these audio, media & display hals from LineageOS 
@@ -74,6 +80,7 @@ then
 
     echo ">> Cloning Devicesettings"
     git clone https://github.com/LineageOS/android_packages_resources_devicesettings -b lineage-20.0 packages/resources/devicesettings
+    echo
 
     # echo ">> Cloning Miui Camera"
     # git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
@@ -95,36 +102,42 @@ then
             rm -rf device/xiaomi/cepheus
             # git clone https://github.com/balgxmr/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
             git clone https://github.com/PixelOS-Devices/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
+            echo
             ;;
 
             "2")
             rm -rf kernel/xiaomi/cepheus
             echo ">> Cloning Kernel tree"
             git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b thirteen kernel/xiaomi/cepheus
+            echo
             ;;
 
             "3")
             rm -rf vendor/xiaomi/cepheus
             echo ">> Cloning Vendor tree"
             git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b thirteen vendor/xiaomi/cepheus
+            echo
             ;;
             
             "4")
             rm -rf hardware/xiaomi
             echo ">> Cloning Hw/xiaomi"
             git clone https://github.com/balgxmr/hardware_xiaomi -b lineage-20 hardware/xiaomi
+            echo
             ;;
 
             "5")
             rm -rf prebuilts/clang/host/linux-x86/clang-playground
             echo ">> Cloning Clang"
             git clone https://gitlab.com/PixelOS-Devices/playgroundtc.git -b 17 prebuilts/clang/host/linux-x86/clang-playground
+            echo
             ;;
 
             "6")
             rm -rf packages/resources/devicesettings
             echo ">> Cloning Devicesettings"
             git clone https://github.com/LineageOS/android_packages_resources_devicesettings -b lineage-20.0 packages/resources/devicesettings
+            echo
             ;;
 
             "7")
@@ -135,6 +148,7 @@ then
                 rm -rf vendor/xiaomi/cepheus-miuicamera
                 echo ">> Cloning Miui Camera"
                 git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
+                echo
             else
                 echo Continuing...
             fi
