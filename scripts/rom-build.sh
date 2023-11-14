@@ -21,7 +21,7 @@ echo
 read -p "Selección: " seleccion
 echo
 
-android_version='thirteen'
+android_version='fourteen'
 device_codename='cepheus'
 
 case $seleccion in 
