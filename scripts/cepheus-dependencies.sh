@@ -8,6 +8,7 @@
 
 ROM_NAME='pixelos'
 BUILD_SCRIPT='rom-build.sh'
+android_version='fourteen'
 
 if [ -d ~/$ROM_NAME ]
 then
@@ -54,16 +55,16 @@ then
     echo
 
     echo ">> Cloning Device tree"
-    # git clone https://github.com/balgxmr/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
-    git clone https://github.com/PixelOS-Devices/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
+    # git clone https://github.com/balgxmr/device_xiaomi_cepheus/ -b $android_version device/xiaomi/cepheus
+    git clone https://github.com/PixelOS-Devices/device_xiaomi_cepheus/ -b $android_version device/xiaomi/cepheus
     echo
 
     echo ">> Cloning Kernel tree"
-    git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b thirteen kernel/xiaomi/cepheus
+    git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b $android_version kernel/xiaomi/cepheus
     echo
 
     echo ">> Cloning Vendor tree"
-    git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b thirteen vendor/xiaomi/cepheus
+    git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b $android_version vendor/xiaomi/cepheus
     echo
 
     echo ">> Cloning Hw/xiaomi"
@@ -92,7 +93,7 @@ then
     do
         echo "Which dependency do you want to clone?"
         echo "1. Device tree\n2. Kernel tree\n3. Vendor tree\n4. Hardware/Xiaomi"
-        echo "5. Clang\n6. Device Settings\n7. MIUI Camera vendor"
+        echo "5. Clang\n6. Device Settings"
         read -p "Your selection: " dependency
         echo
 
@@ -100,22 +101,22 @@ then
             "1")
             echo ">> Cloning Device tree"
             rm -rf device/xiaomi/cepheus
-            # git clone https://github.com/balgxmr/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
-            git clone https://github.com/PixelOS-Devices/device_xiaomi_cepheus/ -b thirteen device/xiaomi/cepheus
+            # git clone https://github.com/balgxmr/device_xiaomi_cepheus/ -b $android_version device/xiaomi/cepheus
+            git clone https://github.com/PixelOS-Devices/device_xiaomi_cepheus/ -b $android_version device/xiaomi/cepheus
             echo
             ;;
 
             "2")
             rm -rf kernel/xiaomi/cepheus
             echo ">> Cloning Kernel tree"
-            git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b thirteen kernel/xiaomi/cepheus
+            git clone https://github.com/balgxmr/kernel_xiaomi_cepheus/ -b $android_version kernel/xiaomi/cepheus
             echo
             ;;
 
             "3")
             rm -rf vendor/xiaomi/cepheus
             echo ">> Cloning Vendor tree"
-            git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b thirteen vendor/xiaomi/cepheus
+            git clone https://github.com/PixelOS-Devices/vendor_xiaomi_cepheus -b $android_version vendor/xiaomi/cepheus
             echo
             ;;
             
@@ -140,19 +141,19 @@ then
             echo
             ;;
 
-            "7")
-            echo "MIUI camera isn't stable right now, do you still want to clone it?"
-            read -p "(y/n): " miuielection
-            if [ $miuielection = 'y' ]
-            then
-                rm -rf vendor/xiaomi/cepheus-miuicamera
-                echo ">> Cloning Miui Camera"
-                git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
-                echo
-            else
-                echo Continuing...
-            fi
-            ;;
+            # "7")
+            # echo "MIUI camera isn't stable right now, do you still want to clone it?"
+            # read -p "(y/n): " miuielection
+            # if [ $miuielection = 'y' ]
+            # then
+            #    rm -rf vendor/xiaomi/cepheus-miuicamera
+            #    echo ">> Cloning Miui Camera"
+            #    git clone https://gitlab.com/baalgx/vendor_xiaomi_cepheus-miuicamera -b master vendor/xiaomi/cepheus-miuicamera
+            #    echo
+            # else
+            #     echo Continuing...
+            # fi
+            # ;;
         esac
     echo "Do you want to clone another dependency?"
     read -p "(y/n): " z
